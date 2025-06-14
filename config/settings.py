@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # Optional -- requires install using `django-allauth[socialaccount]`.
     "allauth.socialaccount",
     "checkout",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -63,11 +64,14 @@ TEMPLATES = [
                 "django.template.context_processors.request",  # rerquired by allauth
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'django.template.context_processors.media',
                 "bag.contexts.bag_contents",
             ],
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
