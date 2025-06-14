@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "bag",
     # Optional -- requires install using `django-allauth[socialaccount]`.
     "allauth.socialaccount",
+    "checkout",
 ]
 
 MIDDLEWARE = [
@@ -100,6 +101,8 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
 # Password validation
