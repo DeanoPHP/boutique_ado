@@ -28,9 +28,15 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         bag = intent.metadata.bag
-        save_info = intent.metadata.save_info
-
-        billing_details = intent.charges.data[0].billing_details
+        save_info = intent.metadata.save_info        
+        
+        # AI change
+        charges = getattr(intent, 'charges', None)
+        if charges and charges.data:
+            billing_details = charges.data[0].billing_details
+        else:
+            billing_details = {}
+            
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount / 100, 2)
 
