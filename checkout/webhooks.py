@@ -23,8 +23,12 @@ def webhook(request):
 
     try:
         event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WH_SECRET
-        )
+        payload, sig_header, settings.STRIPE_WH_SECRET)
+
+        # Expand charges to access billing details
+        if event['type'] == 'payment_intent.succeeded':
+            intent_id = event.data.object.id
+            event.data.object = stripe.PaymentIntent.retrieve(intent_id, expand=['charges'])
     except ValueError as e:
         # Invalid payload
         return HttpResponse(status=400)
