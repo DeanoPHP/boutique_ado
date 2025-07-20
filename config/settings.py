@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -17,14 +18,14 @@ SECRET_KEY = "django-insecure-hg=sz518v@7*=zb=n081uh*mzomo7doi*+z+8d6k0fwivk#p*0
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
+    "127.0.0.1",
+    "localhost",
 ]
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
+SECRET_KEY = os.environ.get("SECRET_KEY")
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+STRIPE_WH_SECRET = os.environ.get("STRIPE_WH_SECRET")
 
 # Application definition
 
@@ -46,11 +47,11 @@ INSTALLED_APPS = [
     "checkout",
     "crispy_forms",
     "crispy_bootstrap4",
-    'profiles',
+    "profiles",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = ["bootstrap4"]
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -78,7 +79,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",  # rerquired by allauth
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'django.template.context_processors.media',
+                "django.template.context_processors.media",
                 "bag.contexts.bag_contents",
             ],
         },
@@ -119,7 +120,7 @@ DATABASES = {
     }
 }
 
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 
 # Password validation
@@ -170,8 +171,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Stripe
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
-STRIPE_CURRENCY = 'gbp'
-STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
-STRIPE_SECRETE_KEY = os.environ.get('STRIPE_SECRET_KEY')
-STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', )
-DEFAULT_FROM_EMEIL = 'boutiqueado@example.com'
+STRIPE_CURRENCY = "gbp"
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "")
+STRIPE_SECRETE_KEY = os.environ.get("STRIPE_SECRET_KEY")
+STRIPE_WH_SECRET = os.environ.get(
+    "STRIPE_WH_SECRET",
+)
+DEFAULT_FROM_EMEIL = "boutiqueado@example.com"
