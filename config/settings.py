@@ -15,8 +15,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-hg=sz518v@7*=zb=n081uh*mzomo7doi*+z+8d6k0fwivk#p*0"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Get the environment (default to 'development' if not set)
+ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
+
+# Set the DEBUG mode based on the environment
+DEBUG = ENVIRONMENT == 'development'
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -184,4 +187,21 @@ STRIPE_SECRETE_KEY = os.environ.get("STRIPE_SECRET_KEY")
 STRIPE_WH_SECRET = os.environ.get(
     "STRIPE_WH_SECRET",
 )
-DEFAULT_FROM_EMEIL = "boutiqueado@example.com"
+
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'boutiqueado@example.com'
+
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
